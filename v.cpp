@@ -1,34 +1,42 @@
 
 #include <bits/stdc++.h>
-
+#define yes cout<<"YES"<<"\n"
+#define no cout<<"NO"<<"\n"
+#define ll long long
+#define MOD 998244353
 using namespace std;
 
 int main()
 {
 ios::sync_with_stdio(0);
 cin.tie(0);
-vector<int>arr;
+    int N;
+    cin >> N;
+    vector<int> freq(2001, 0);
+    vector<int> uniq;
 
-    arr.push_back(1);
-    arr.push_back(3);
-    arr.push_back(4);
-    arr.push_back(5);
-    arr.push_back(6);
-    arr.push_back(8);
-    int mn=INT_MAX;
-    for(int i=0;i<6;i++){
-        int count=0;
-        for(int j=5;j>=0;j--){
-            if((arr[i]+arr[j])%2==0){
-                count++;
-                break;
-            }else{
-                count++;
-            }
-        }
-        mn=min(mn,count);
+    for(int i=0;i<N;i++){
+        int x; 
+        cin >> x;
+        freq[x]++;
     }
-    cout<<mn<<endl;
 
+    for(int i=1;i<=2000;i++){
+        if(freq[i] > 1){
+            cout << 0 << "\n";
+            return 0;
+        }
+        if(freq[i] == 1) uniq.push_back(i);
+    }
+
+    long long ans = 1;
+    int sz = uniq.size();
+    for(int i=0;i<sz;i++){
+        for(int j=i+1;j<sz;j++){
+            ans = (ans * (uniq[i] ^ uniq[j])) % MOD;
+        }
+    }
+
+    cout << ans << "\n";
     return 0;
 }
