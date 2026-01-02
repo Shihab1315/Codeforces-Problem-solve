@@ -16,7 +16,8 @@ int main(){
 
         vector<ll> v(n), prefix(n);
         for(int i = 0; i < n; i++){
-            cin >> v[i];
+            cin >> v[i];A. Operations with Inversions
+
         }
 
         prefix[0] = v[0];
